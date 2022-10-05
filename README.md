@@ -1,4 +1,4 @@
-# Adopta Dawg
+# Adopt a Dog
 
 ## Order of Operations
 - Build out Auth Page and Functionality
@@ -11,6 +11,6 @@
 - Header.js update with conditional Home redirect
 - Delete Button
 
-## State
-dogs, setDogs
+## Plan
+[Miro Board](https://miro.com/app/board/uXjVPQOTihA=/?share_link_id=6480620625)
 
