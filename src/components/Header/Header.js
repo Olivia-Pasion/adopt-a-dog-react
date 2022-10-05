@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { UserContext } from '../../../context/userContext';
+import { UserContext } from '../../context/userContext';
 
 export default function Header() {
   const { user } = useContext(UserContext);
