@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { /*Redirect*/ useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import { authUser } from '../../services/auth';
 
@@ -8,12 +8,12 @@ export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { user, setUser } = useContext(UserContext);
+
+  console.log('users in auth', user);
   // NavLink instead of h1? Highlight if active
 
-  // redirect if user needs to sign up instead of sign in
   if (user) {
-    // return <Redirect to="/"></Redirect>;
-    console.log('got user', user);
+    return <Redirect to="/"></Redirect>;
   }
 
   // create onClick handler for auth
@@ -21,7 +21,6 @@ export default function Auth() {
     const usersInput = await authUser(email, password, type);
 
     setUser(usersInput);
-
     setEmail('');
     setPassword('');
   };
@@ -31,6 +30,7 @@ export default function Auth() {
       <div>
         <h1>{type}</h1>
         <input
+          type="text"
           value={email}
           name="email"
           placeholder="email"
