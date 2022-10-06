@@ -1,16 +1,29 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDogDetail } from '../../hooks/useDogDetail';
+import { updateDog } from '../../services/dogs';
 
 export default function UpdateDog() {
   const { id } = useParams();
 
   const { dogDetail } = useDogDetail(id);
 
-  const [name, setName] = useState('');
-  const [breed, setBreed] = useState('');
-  const [bio, setBio] = useState('');
-  const [image, setImage] = useState('');
+  const [name, setName] = useState(dogDetail.name);
+  const [breed, setBreed] = useState(dogDetail.breed);
+  const [bio, setBio] = useState(dogDetail.bio);
+  const [image, setImage] = useState(dogDetail.image);
+
+  const handleSubmit = () => {
+    const updatedDog = {
+      id,
+      name,
+      breed,
+      bio,
+      image,
+    };
+
+    updateDog(updatedDog);
+  };
 
   return (
     <div className="updatedog-form">
@@ -43,7 +56,7 @@ export default function UpdateDog() {
           onChange={(e) => setImage(e.target.value)}
         />
       </label>
-      <button>Add</button>
+      <button onClick={handleSubmit}>Add</button>
     </div>
   );
 }
