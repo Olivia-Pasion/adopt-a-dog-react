@@ -18,11 +18,7 @@ export async function addNewDog(NewDog) {
   return response.data;
 }
 
-export async function updateDog(updatedDog) {
-  const response = await client
-    .from('adopt-a-dog')
-    .update(updatedDog)
-    .match(updatedDog.id)
-    .single();
+export async function updateDog({ id, name, breed, bio, image }) {
+  const response = await client.from('adopt-a-dog').update({ name, breed, bio, image }).match({ id });
   console.log(response);
 }
