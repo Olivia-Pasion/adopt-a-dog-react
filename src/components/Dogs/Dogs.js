@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import { useDogs } from '../../hooks/useDogs';
 import DogCard from '../DogCard/DogCard';
+import './Dogs.css';
 
 export default function Dogs() {
   const { dogs } = useDogs();

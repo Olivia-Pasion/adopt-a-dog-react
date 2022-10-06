@@ -1,0 +1,5 @@
+.dog-container {
+  justify-content: center;
+  display: flex;
+  gap: 15px;
+}
