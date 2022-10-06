@@ -26,6 +26,7 @@ export default function Header() {
       {user && (
         <div>
           <h2>{user.email}</h2>
+          <NavLink to="/newdog">Add New Dog</NavLink>
           <NavLink onClick={handleSignOut} to="/auth/sign-in">
             Sign Out
           </NavLink>
