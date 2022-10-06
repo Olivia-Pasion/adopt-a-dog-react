@@ -1,0 +1,15 @@
+.newdog-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.newdog-form input {
+  margin: 8px;
+  padding: 5px;
+}
+
+button {
+  width: 350px;
+}

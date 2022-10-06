@@ -7,7 +7,6 @@ import './Dogs.css';
 
 export default function Dogs() {
   const { dogs } = useDogs();
-  console.log('dogs', dogs);
   const { user } = useContext(UserContext);
 
   if (!user) {
