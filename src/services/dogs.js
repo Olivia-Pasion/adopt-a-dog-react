@@ -11,3 +11,15 @@ export async function getDogs() {
     return checkError(e.message);
   }
 }
+
+// NewDog service thing
+// export async function addNewDog() {
+//   try {
+//     const response = await client
+//       .from('adopt-a-dog')
+//       .insert({
+//         name,
+//         breed,
+//       })
+//   }
+// }
