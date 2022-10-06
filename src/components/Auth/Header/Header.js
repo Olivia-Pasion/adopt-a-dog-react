@@ -1,9 +1,16 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../../../context/userContext';
+import { supaSignOut } from '../../../services/auth';
 
 export default function Header() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  const handleSignOut = async () => {
+    await supaSignOut();
+    setUser(null);
+  };
+
   return (
     <div>
       {!user && (
@@ -19,7 +26,9 @@ export default function Header() {
       {user && (
         <div>
           <h2>{user.email}</h2>
-          <div>Sign Out</div>
+          <NavLink onClick={handleSignOut} to="/auth/sign-in">
+            Sign Out
+          </NavLink>
         </div>
       )}
     </div>

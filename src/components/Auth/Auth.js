@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { /*Redirect*/ useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import { authUser } from '../../services/auth';
 
@@ -12,8 +12,7 @@ export default function Auth() {
 
   // redirect if user needs to sign up instead of sign in
   if (user) {
-    // return <Redirect to="/"></Redirect>;
-    console.log('got user', user);
+    return <Redirect to="/"></Redirect>;
   }
 
   // create onClick handler for auth
