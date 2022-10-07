@@ -11,7 +11,6 @@ export async function authUser(email, password, type) {
   } else {
     response = await client.auth.signIn({ email, password });
   }
-  console.log('response.user', response.user);
   return response.user;
 }
 

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { NavLink, useLocation, useParams, useRouteMatch } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import { supaSignOut } from '../../services/auth';
 
@@ -10,11 +10,7 @@ export default function Header() {
     await supaSignOut();
     setUser(null);
   };
-  // currentPage.pathname
   const currentPage = useLocation();
-  console.log(currentPage);
-  
-  const path = useRouteMatch('/updatedog/:id');
 
   return (
     <div>
@@ -36,7 +32,6 @@ export default function Header() {
             Sign Out
           </NavLink>
 
-          {/* TODO: Figure out why id path does not yield correct pathname here. */}
           {(currentPage.pathname !== '/' && currentPage.pathname !== '/auth/sign-in' && currentPage.pathname !== '/auth/sign-up') && (
             <NavLink to="/">Home</NavLink>
           )}
@@ -45,5 +40,3 @@ export default function Header() {
     </div>
   );
 }
-
-//Change Signout to a nav link?

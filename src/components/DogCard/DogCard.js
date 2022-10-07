@@ -1,7 +1,6 @@
 import { useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
-import { useDogs } from '../../hooks/useDogs';
 import { deleteDog, getDogs } from '../../services/dogs';
 import './DogCard.css';
 export default function DogCard({ id, name, breed, bio, image, user_id, setDogs }) {

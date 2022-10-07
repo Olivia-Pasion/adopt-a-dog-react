@@ -14,4 +14,3 @@ export function useDogs() {
   return { dogs, setDogs };
 }
 
-// might need setDogs in return
