@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { UserContext } from '../../../context/userContext';
 import { supaSignOut } from '../../../services/auth';
 
@@ -10,6 +10,12 @@ export default function Header() {
     await supaSignOut();
     setUser(null);
   };
+
+  const currentPage = useLocation();
+  console.log(currentPage);
+
+  const id = useParams();
+  console.log(id);
 
   return (
     <div>
@@ -30,6 +36,11 @@ export default function Header() {
           <NavLink onClick={handleSignOut} to="/auth/sign-in">
             Sign Out
           </NavLink>
+
+          {/* TODO: Figure out why id path does not yield correct pathname here. */}
+          {/* {(currentPage.pathname === '/newdog' || currentPage.pathname === `/updatedog/:${id}`) && (
+            <NavLink to="/">Home</NavLink>
+          )} */}
         </div>
       )}
     </div>
