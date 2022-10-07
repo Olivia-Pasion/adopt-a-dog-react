@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import { supaSignOut } from '../../services/auth';
+import './Header.css';
 
 export default function Header() {
   const { user, setUser } = useContext(UserContext);
@@ -13,7 +14,7 @@ export default function Header() {
   const currentPage = useLocation();
 
   return (
-    <div>
+    <div className="header">
       {!user && (
         <div>
           <NavLink className="sign-in" to="/auth/sign-in">
@@ -25,16 +26,16 @@ export default function Header() {
         </div>
       )}
       {user && (
-        <div>
-          <h2>{user.email}</h2>
+        <div className="header">
+          <h2>{`Hello, ${user.email}`}</h2>
           <NavLink to="/newdog">Add New Dog</NavLink>
           <NavLink onClick={handleSignOut} to="/auth/sign-in">
             Sign Out
           </NavLink>
 
-          {(currentPage.pathname !== '/' && currentPage.pathname !== '/auth/sign-in' && currentPage.pathname !== '/auth/sign-up') && (
-            <NavLink to="/">Home</NavLink>
-          )}
+          {currentPage.pathname !== '/' &&
+            currentPage.pathname !== '/auth/sign-in' &&
+            currentPage.pathname !== '/auth/sign-up' && <NavLink to="/">Home</NavLink>}
         </div>
       )}
     </div>
