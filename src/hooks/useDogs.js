@@ -5,14 +5,13 @@ export function useDogs() {
   const [dogs, setDogs] = useState([]);
 
   useEffect(() => {
-
     async function fetchData() {
       const data = await getDogs();
       setDogs(data);
     }
     fetchData();
   }, []);
-  return { dogs };
+  return { dogs, setDogs };
 }
 
 // might need setDogs in return

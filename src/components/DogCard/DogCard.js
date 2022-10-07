@@ -1,15 +1,17 @@
 import { useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
-import { deleteDog } from '../../services/dogs';
+import { useDogs } from '../../hooks/useDogs';
+import { deleteDog, getDogs } from '../../services/dogs';
 import './DogCard.css';
-export default function DogCard({ id, name, breed, bio, image, user_id }) {
+export default function DogCard({ id, name, breed, bio, image, user_id, setDogs }) {
   const { user } = useContext(UserContext);
   //add delete button and edit button to return
   const owner = user.id === user_id;
 
   const handleAdopt = async () => {
     await deleteDog({ id });
+    await setDogs(await getDogs());
   };
 
   return (

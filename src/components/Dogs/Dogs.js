@@ -6,7 +6,7 @@ import DogCard from '../DogCard/DogCard';
 import './Dogs.css';
 
 export default function Dogs() {
-  const { dogs } = useDogs();
+  const { dogs, setDogs } = useDogs();
   const { user } = useContext(UserContext);
 
   if (!user) {
@@ -18,7 +18,7 @@ export default function Dogs() {
       <h1>Welcome to the Puppy Party!</h1>
       <div className="dog-container">
         {dogs.map((dog) => (
-          <DogCard key={dog.id} {...dog} />
+          <DogCard key={dog.id} {...dog} setDogs={setDogs} />
         ))}
       </div>
     </div>
