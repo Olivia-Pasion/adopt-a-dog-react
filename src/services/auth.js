@@ -14,3 +14,7 @@ export async function authUser(email, password, type) {
   console.log('response.user', response.user);
   return response.user;
 }
+
+export async function supaSignOut() {
+  await client.auth.signOut();
+}
