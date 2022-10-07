@@ -16,13 +16,16 @@ export default function DogCard({ id, name, breed, bio, image, user_id, setDogs 
   return (
     <div className="dog-card">
       <img src={image}></img>
-      <span>{`Hi! My name is ${name}`}</span>
+      <span>{`Hey there, I'm ${name}!`}</span>
       <span>{breed}</span>
       <p>{bio}</p>
       {owner && (
         <>
-          <Link to={`/updatedog/${id}`}>Edit</Link>
-          <button onClick={handleAdopt}>🏘️</button>
+          <Link to={`/updatedog/${id}`}>Modify Info</Link>
+          <button className="tooltip" onClick={handleAdopt}>
+            🏘️
+            <span className="tooltiptext">Adopt Me!</span>
+          </button>
         </>
       )}
     </div>
