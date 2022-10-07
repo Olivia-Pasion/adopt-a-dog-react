@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
-import { UserContext } from '../../../context/userContext';
-import { supaSignOut } from '../../../services/auth';
+import { UserContext } from '../../context/userContext';
+import { supaSignOut } from '../../services/auth';
 
 export default function Header() {
   const { user, setUser } = useContext(UserContext);
@@ -13,9 +13,9 @@ export default function Header() {
 
   const currentPage = useLocation();
   console.log(currentPage);
-
-  const id = useParams();
-  console.log(id);
+  const id = parseInt(currentPage);
+  // const { id } = useParams();
+  // console.log(id);
 
   return (
     <div>
@@ -38,9 +38,9 @@ export default function Header() {
           </NavLink>
 
           {/* TODO: Figure out why id path does not yield correct pathname here. */}
-          {/* {(currentPage.pathname === '/newdog' || currentPage.pathname === `/updatedog/:${id}`) && (
+          {(currentPage.pathname === '/newdog' || currentPage.pathname === `/updatedog/${id}`) && (
             <NavLink to="/">Home</NavLink>
-          )} */}
+          )}
         </div>
       )}
     </div>
