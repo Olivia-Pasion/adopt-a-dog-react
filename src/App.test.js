@@ -74,3 +74,21 @@ test('dog card page renders', async () => {
 
   await screen.findByText(/name/, /breed/, /bio/);
 });
+
+test('new dog page renders', async () => {
+  authFns.getUser.mockReturnValue(existingUser);
+
+  render(
+    <UserProvider>
+      <MemoryRouter>
+        <App></App>
+      </MemoryRouter>
+    </UserProvider>
+  );
+
+  const newDog = screen.getByText('Add New Dog');
+  fireEvent.click(newDog);
+
+  const newInput = screen.getByLabelText('Name:', 'Breed:', 'Bio:');
+  expect(newInput.toBeInTheDocument);
+});
