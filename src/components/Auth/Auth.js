@@ -10,7 +10,6 @@ export default function Auth() {
   const [password, setPassword] = useState('');
   const { user, setUser } = useContext(UserContext);
 
-
   if (user) {
     return <Redirect to="/"></Redirect>;
   }
@@ -25,23 +24,29 @@ export default function Auth() {
   };
 
   return (
-    <div className='auth-form-container'>
+    <div className="auth-form-container">
       <div>
         <h1>{type}</h1>
-        <input
-          type="text"
-          value={email}
-          name="email"
-          placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          placeholder="password"
-          type="password"
-          value={password}
-          name="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <label htmlFor="email">
+          Email:
+          <input
+            type="text"
+            value={email}
+            id="email"
+            placeholder="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </label>
+        <label htmlFor="password">
+          Password:
+          <input
+            placeholder="password"
+            type="password"
+            value={password}
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
         <button onClick={handleSubmit}>Submit</button>
       </div>
     </div>
