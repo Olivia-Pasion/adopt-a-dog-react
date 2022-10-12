@@ -53,7 +53,6 @@ test('can see log in page and log in', async () => {
   expect(passwordInput.value).toBe(existingUser.password);
 
   const submit = screen.getByText('Submit');
-  console.log(submit);
   fireEvent.click(submit);
 
   const signedIn = await screen.findByText(`Hello, ${existingUser.email}`);
@@ -75,8 +74,17 @@ test('dog card page renders', async () => {
   await screen.findByText(/name/, /breed/, /bio/);
 });
 
-test('new dog page renders', async () => {
+const newDog = {
+  image: 'https://placedog.net/800/640?id=1',
+  name: 'name2',
+  breed: 'breed',
+  bio: 'bio',
+};
+
+test('new dog page renders and posts the dog', async () => {
   authFns.getUser.mockReturnValue(existingUser);
+  dogsFns.getDogs.mockReturnValue(dogs);
+  dogsFns.addNewDog.mockReturnValue(newDog);
 
   render(
     <UserProvider>
@@ -85,10 +93,28 @@ test('new dog page renders', async () => {
       </MemoryRouter>
     </UserProvider>
   );
+  const navToNewDog = screen.getByText('Add New Dog');
+  fireEvent.click(navToNewDog);
 
-  const newDog = screen.getByText('Add New Dog');
-  fireEvent.click(newDog);
+  const imageInput = screen.getByPlaceholderText('url');
+  fireEvent.change(imageInput, { target: { value: newDog.image } });
+  expect(imageInput.value).toBe(newDog.image);
 
-  const newInput = screen.getByLabelText('Name:', 'Breed:', 'Bio:');
-  expect(newInput.toBeInTheDocument);
+  const nameInput = screen.getByLabelText('Name:');
+  fireEvent.change(nameInput, { target: { value: newDog.name } });
+  expect(nameInput.value).toBe(newDog.name);
+
+  const bioInput = screen.getByLabelText('Bio:');
+  fireEvent.change(bioInput, { target: { value: newDog.bio } });
+  expect(bioInput.value).toBe(newDog.bio);
+
+  const breedInput = screen.getByLabelText('Breed:');
+  fireEvent.change(breedInput, { target: { value: newDog.breed } });
+  expect(breedInput.value).toBe(newDog.breed);
+
+  const submit = screen.getByText('Add');
+  fireEvent.click(submit);
+
+  const test = await screen.findByText(/name/);
+  expect(test).toBeInTheDocument();
 });

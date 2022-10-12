@@ -42,7 +42,7 @@ export default function NewDog() {
         Copy this URL and add any number between 1-233 to the end for a cute dog picture
         https://placedog.net/800/640?id=
         <br></br>
-        <input value={image} onChange={(e) => setImage(e.target.value)} />
+        <input value={image} placeholder="url" onChange={(e) => setImage(e.target.value)} />
       </label>
       <button onClick={handleAddNewDog}>Add</button>
     </div>
