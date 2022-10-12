@@ -34,7 +34,7 @@ test('authenticated users can see dog list page', async () => {
     </UserProvider>
   );
   await screen.findByText(/Jerry/i);
-  await screen.findByText(/Edit/i);
+  await screen.findByText(/Modify Info/i);
   await screen.findByText(/Kramer/i);
   screen.debug();
 });
@@ -64,7 +64,7 @@ const mockDog = {
   image: 'https://www.thefarmersdog.com/digest/wp-content/uploads/2022/04/Samoyed-top.jpg'
 };
 
-it.only('authenticated user can submit a new dog', async () => {
+it('authenticated user can submit a new dog', async () => {
   authFns.getUser.mockReturnValue(mockUser);
   dogsFns.addNewDog.mockReturnValue(mockDog);
   dogsFns.getDogs.mockReturnValue([...mockDogList, mockDog]);
@@ -85,7 +85,7 @@ it.only('authenticated user can submit a new dog', async () => {
   const bioInput = screen.getByLabelText('Bio:');
   fireEvent.change(bioInput, { target: { value: mockDog.bio } });
 
-  const imageInput = screen.getByLabelText('Image URL:');
+  const imageInput = screen.getByLabelText(`Copy this URL and add any number between 1-233 to the end for a cute dog picture https://placedog.net/800/640?id=`);
   fireEvent.change(imageInput, { target: { value: mockDog.image } });
 
   const submitDog = screen.getByRole('button');
@@ -95,7 +95,7 @@ it.only('authenticated user can submit a new dog', async () => {
   
   await screen.findByText(/Welcome to the Puppy Party!/i);
   
-  const newDogInList = screen.getByText('Hi! My name is jelly');
+  const newDogInList = screen.getByText(`Hey there, I'm jelly!`);
   screen.debug();
   expect(newDogInList).toBeInTheDocument();
 

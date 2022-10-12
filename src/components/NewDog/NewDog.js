@@ -39,7 +39,9 @@ export default function NewDog() {
         <input value={bio} onChange={(e) => setBio(e.target.value)} />
       </label>
       <label>
-        Image URL:
+        Copy this URL and add any number between 1-233 to the end for a cute dog picture
+        https://placedog.net/800/640?id=
+        <br></br>
         <input value={image} onChange={(e) => setImage(e.target.value)} />
       </label>
       <button onClick={handleAddNewDog}>Add</button>

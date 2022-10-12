@@ -15,5 +15,42 @@
   max-height: 300px;
   max-width: 300px;
   border-radius: 50%;
-  margin: 8px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.dog-card button {
+  width: 50px;
+  background-color: rgb(211, 184, 244);
+  padding: 5px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.dog-card span {
+  margin: 10px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(111, 17, 227);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
