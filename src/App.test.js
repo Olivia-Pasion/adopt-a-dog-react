@@ -32,8 +32,11 @@ test('user can sign in', async () => {
   const passwordInput = screen.getByLabelText('Password:');
   fireEvent.change(passwordInput, { target: { value: 'password' } });
 
-  // const headerText = await screen.findByText('Hello, test@test.com');
-  // expect(headerText).toBeInTheDocument();
+  const button = screen.getByRole('button');
+  fireEvent.click(button);
+
+  const headerText = await screen.findByText('Sign Out');
+  expect(headerText).toBeInTheDocument();
 
   //user should see their email displayed in header
   screen.debug();
