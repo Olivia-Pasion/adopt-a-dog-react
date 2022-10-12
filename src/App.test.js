@@ -1,12 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
 import { MemoryRouter } from 'react-router-dom';
 import { UserProvider } from './context/userContext';
 
 import * as authFns from './services/auth';
 import * as dogsFns from './services/dogs';
-import * as dogsHook from './hooks/useDogs';
-import * as detailHook from './hooks/useDogDetail';
 
 jest.mock('./services/auth');
 jest.mock('./services/dogs');
@@ -25,9 +23,9 @@ const mockDog = {
 };
 
 const mockDogList = [
-  { id: 1, name: 'Jerry', breed: 'hound', bio: 'what is up with that', image: ''}, 
-  { id: 2, name: 'Kramer', breed: 'poodle', bio: 'tzt tzt', image: ''} 
-]
+  { id: 1, name: 'Jerry', breed: 'hound', bio: 'what is up with that', image: '', user_id: '0dab2c65-5911-469c-9f12-8fb47ebe52f2' }, 
+  { id: 2, name: 'Kramer', breed: 'poodle', bio: 'tzt tzt', image: '' } 
+];
 
 test('authenticated users can see dog list page', async () => {
   authFns.getUser.mockReturnValue(mockUser);
@@ -42,5 +40,24 @@ test('authenticated users can see dog list page', async () => {
     </UserProvider>
   );
   await screen.findByText(/Jerry/i);
+  await screen.findByText(/Edit/i);
   await screen.findByText(/Kramer/i);
+});
+
+it('authenticated user can go to add dog page', async () => {
+  authFns.getUser.mockReturnValue(mockUser);
+
+  render(
+    <UserProvider>
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>
+    </UserProvider>
+  );
+  const newDogLink = screen.getByText('Add New Dog');
+  fireEvent.click(newDogLink);
+
+  const newDogButton = await screen.getByText('Add');
+  expect(newDogButton).toBeInTheDocument();
+
 });
