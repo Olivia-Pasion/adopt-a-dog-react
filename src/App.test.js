@@ -32,6 +32,7 @@ const dogs = [
 test('can see log in page and log in', async () => {
   authFns.authUser.mockReturnValue(existingUser);
   dogsFns.getDogs.mockReturnValue(dogs);
+
   render(
     <UserProvider>
       <MemoryRouter>
@@ -57,4 +58,19 @@ test('can see log in page and log in', async () => {
 
   const signedIn = await screen.findByText(`Hello, ${existingUser.email}`);
   expect(signedIn).toBeInTheDocument();
+});
+
+test('dog card page renders', async () => {
+  authFns.getUser.mockReturnValue(existingUser);
+  dogsFns.getDogs.mockReturnValue(dogs);
+
+  render(
+    <UserProvider>
+      <MemoryRouter>
+        <App></App>
+      </MemoryRouter>
+    </UserProvider>
+  );
+
+  await screen.findByText(/name/, /breed/, /bio/);
 });
