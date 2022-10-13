@@ -22,11 +22,9 @@ export default function DogCard({ id, name, breed, bio, image, user_id, setDogs 
       {owner && (
         <>
           <Link to={`/updatedog/${id}`}>Modify Info</Link>
-          <button className="tooltip" onClick={handleAdopt}>
+          <button className="tooltip" aria-label="adopt-button" onClick={handleAdopt}>
             🏘️
-            <span className="tooltiptext" aria-label="adopt-button">
-              Adopt Me!
-            </span>
+            <span className="tooltiptext">Adopt Me!</span>
           </button>
         </>
       )}
